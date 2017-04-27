@@ -1,6 +1,6 @@
 Visualization
 ========================================================
-author: Sri Sehadri
+author: Sri Seshadri
 date: 28th April 2017
 autosize: true
 css:custom.css
@@ -47,7 +47,8 @@ Exploratory Data Analysis using R
  
  Datasets
  - iris
- - Cummins Data
+ - mpg
+ - diamonds
  
  ***
  
@@ -76,21 +77,75 @@ library(ggplot2)
 <br>
 ggplot template
   - ggplot(data = <span style = "color:Red">data </span>) + <br>
-    <span style = "color:Red">GEOM_FUNCTION</span>(mapping = aes(<span style = "color:Red">MAPPINGS</span>) 
+    <span style = "color:Red">GEOM_FUNCTION</span>(mapping = <span style = "color:blue">aes</span>(<span style = "color:Red">MAPPINGS</span>) 
    
-
+<i>An <span style = "color:blue">aes</span>thetic is a visual property of the objects in your plot. Aesthetics include things like size,shape or color of your points.</i>
 
  
-Slide With Code
+How does the "mpg" data look?
 ========================================================
-
-```{r}
-summary(cars)
+<br>
+```{r, echo = F}
+library(ggplot2)
+kable(head(mpg))
 ```
+<br>
+try the command  "<span style = "color:blue">head(mpg)</span>"
 
-Slide With Plot
+What are the data types?
 ========================================================
-
-```{r, echo=FALSE}
-plot(cars)
+<br>
+```{r, echo=T, height=10, width=20}
+str(mpg)
 ```
+Histograms
+=========================================================
+```{r,echo=T}
+library(ggplot2)
+# What does ggplot(data = mpg) do?
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy)) 
+
+```
+Aesthetics
+=========================================================
+```{r,echo =T,width=10}
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy),col="red", fill="red")
+```
+***
+```{r,echo =T}
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, col = "red", fill = "red"))
+```
+Aesthetics contd...
+==========================================================
+<font size = 5>
+```{r,echo = T}
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, fill = cyl))
+```
+</font>
+***
+<font size = 5>
+```{r, echo=T}
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, fill = as.factor(cyl)))
+```
+</font>
+
+Move aesthetics to base layer of plot
+============================================================
+<font size = 5>
+```{r,echo=T}
+mpg$cyl <- as.factor(mpg$cyl)
+ggplot(data=mpg,aes(x=hwy,fill = cyl)) + geom_histogram() + theme_bw()
+```
+</font>
+***
+<font size = 5>
+```{r,echo=T}
+library(ggplot2)
+p <- ggplot(data = mpg, aes(x=hwy,fill=cyl))
+p + geom_density(alpha = 0.3) + theme_classic() + labs(fill = "Cylinders", x = "Highway mpg")
+```
+</font>
+
+Scatter Plots
+==============================================================
+

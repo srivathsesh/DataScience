@@ -1,6 +1,6 @@
 Visualization
 ========================================================
-author: Sri Sehadri
+author: Sri Seshadri
 date: 28th April 2017
 autosize: true
 css:custom.css
@@ -47,7 +47,8 @@ Exploratory Data Analysis using R
  
  Datasets
  - iris
- - Cummins Data
+ - mpg
+ - diamonds
  
  ***
  
@@ -76,30 +77,116 @@ library(ggplot2)
 <br>
 ggplot template
   - ggplot(data = <span style = "color:Red">data </span>) + <br>
-    <span style = "color:Red">GEOM_FUNCTION</span>(mapping = aes(<span style = "color:Red">MAPPINGS</span>) 
+    <span style = "color:Red">GEOM_FUNCTION</span>(mapping = <span style = "color:blue">aes</span>(<span style = "color:Red">MAPPINGS</span>) 
    
-
+<i>An <span style = "color:blue">aes</span>thetic is a visual property of the objects in your plot. Aesthetics include things like size,shape or color of your points.</i>
 
  
-Slide With Code
+How does the "mpg" data look?
 ========================================================
+<br>
 
+|manufacturer |model | displ| year| cyl|trans      |drv | cty| hwy|fl |class   |
+|:------------|:-----|-----:|----:|---:|:----------|:---|---:|---:|:--|:-------|
+|audi         |a4    |   1.8| 1999|   4|auto(l5)   |f   |  18|  29|p  |compact |
+|audi         |a4    |   1.8| 1999|   4|manual(m5) |f   |  21|  29|p  |compact |
+|audi         |a4    |   2.0| 2008|   4|manual(m6) |f   |  20|  31|p  |compact |
+|audi         |a4    |   2.0| 2008|   4|auto(av)   |f   |  21|  30|p  |compact |
+|audi         |a4    |   2.8| 1999|   6|auto(l5)   |f   |  16|  26|p  |compact |
+|audi         |a4    |   2.8| 1999|   6|manual(m5) |f   |  18|  26|p  |compact |
+<br>
+try the command  "<span style = "color:blue">head(mpg)</span>"
+
+What are the data types?
+========================================================
+<br>
 
 ```r
-summary(cars)
+str(mpg)
 ```
 
 ```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
+Classes 'tbl_df', 'tbl' and 'data.frame':	234 obs. of  11 variables:
+ $ manufacturer: chr  "audi" "audi" "audi" "audi" ...
+ $ model       : chr  "a4" "a4" "a4" "a4" ...
+ $ displ       : num  1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+ $ year        : int  1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+ $ cyl         : int  4 4 4 4 6 6 6 4 4 4 ...
+ $ trans       : chr  "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+ $ drv         : chr  "f" "f" "f" "f" ...
+ $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...
+ $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...
+ $ fl          : chr  "p" "p" "p" "p" ...
+ $ class       : chr  "compact" "compact" "compact" "compact" ...
+```
+Histograms
+=========================================================
+
+```r
+library(ggplot2)
+# What does ggplot(data = mpg) do?
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy)) 
 ```
 
-Slide With Plot
-========================================================
+![plot of chunk unnamed-chunk-4](Visualization-figure/unnamed-chunk-4-1.png)
+Aesthetics
+=========================================================
 
-![plot of chunk unnamed-chunk-3](Visualization-figure/unnamed-chunk-3-1.png)
+```r
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy),col="red", fill="red")
+```
+
+![plot of chunk unnamed-chunk-5](Visualization-figure/unnamed-chunk-5-1.png)
+***
+
+```r
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, col = "red", fill = "red"))
+```
+
+![plot of chunk unnamed-chunk-6](Visualization-figure/unnamed-chunk-6-1.png)
+Aesthetics contd...
+==========================================================
+<font size = 5>
+
+```r
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, fill = cyl))
+```
+
+![plot of chunk unnamed-chunk-7](Visualization-figure/unnamed-chunk-7-1.png)
+</font>
+***
+<font size = 5>
+
+```r
+ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, fill = as.factor(cyl)))
+```
+
+![plot of chunk unnamed-chunk-8](Visualization-figure/unnamed-chunk-8-1.png)
+</font>
+
+Move aesthetics to base layer of plot
+============================================================
+<font size = 5>
+
+```r
+mpg$cyl <- as.factor(mpg$cyl)
+ggplot(data=mpg,aes(x=hwy,fill = cyl)) + geom_histogram() + theme_bw()
+```
+
+![plot of chunk unnamed-chunk-9](Visualization-figure/unnamed-chunk-9-1.png)
+</font>
+***
+<font size = 5>
+
+```r
+library(ggplot2)
+p <- ggplot(data = mpg, aes(x=hwy,fill=cyl))
+p + geom_density(alpha = 0.3) + theme_classic() + labs(fill = "Cylinders", x = "Highway mpg")
+```
+
+![plot of chunk unnamed-chunk-10](Visualization-figure/unnamed-chunk-10-1.png)
+</font>
+
+Scatter Plots
+==============================================================
+

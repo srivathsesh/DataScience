@@ -3,6 +3,21 @@ PackratVersion: 0.4.8.1
 RVersion: 3.3.2
 Repos: CRAN=https://cran.rstudio.com/
 
+Package: BH
+Source: CRAN
+Version: 1.62.0-1
+Hash: 14dfb3e8ffe20996118306ff4de1fab2
+
+Package: DBI
+Source: CRAN
+Version: 0.6-1
+Hash: 4aef5bda70897c1663d5b8bae2f4419a
+
+Package: R6
+Source: CRAN
+Version: 2.2.0
+Hash: 712773a3439bd32db5c40938e1a9aac2
+
 Package: RColorBrewer
 Source: CRAN
 Version: 1.1-2
@@ -12,6 +27,11 @@ Package: Rcpp
 Source: CRAN
 Version: 0.12.10
 Hash: 6cf65d0dd6a92f2d43c8d4805d33efe9
+
+Package: assertthat
+Source: CRAN
+Version: 0.2.0
+Hash: e8805df54c65ac96d50235c44a82615c
 
 Package: backports
 Source: CRAN
@@ -49,6 +69,12 @@ Source: CRAN
 Version: 0.6.12
 Hash: e53fb8c58673df868183697e39a6a4d6
 
+Package: dplyr
+Source: CRAN
+Version: 0.5.0
+Hash: 673660fd0b947477dab1044abc8b2c95
+Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr, tibble
+
 Package: evaluate
 Source: CRAN
 Version: 0.10
@@ -81,6 +107,12 @@ Source: CRAN
 Version: 0.3.5
 Hash: 3411e0671a44177109dc1a9e4a6bd2a4
 Requires: Rcpp, digest
+
+Package: iplots
+Source: CRAN
+Version: 1.1-7
+Hash: 14ef1984bf461ed191e814ee486579ff
+Requires: png, rJava
 
 Package: jsonlite
 Source: CRAN
@@ -135,6 +167,16 @@ Source: CRAN
 Version: 1.8.4
 Hash: c9ddbdcfd74ff964e3e7d0b692a8dd70
 Requires: Rcpp
+
+Package: png
+Source: CRAN
+Version: 0.1-7
+Hash: 421d7d6e0fb4bd885ecbd909b6456b8b
+
+Package: rJava
+Source: CRAN
+Version: 0.9-8
+Hash: 3e8627a2a5bd45c9bad6112acfc231d9
 
 Package: reshape2
 Source: CRAN
