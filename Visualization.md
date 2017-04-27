@@ -189,4 +189,42 @@ p + geom_density(alpha = 0.3) + theme_classic() + labs(fill = "Cylinders", x = "
 
 Scatter Plots
 ==============================================================
+<br>
+<font size = 5>
 
+```r
+ggplot(data = mpg) + geom_point(mapping= aes(x = displ, y = cty, color = class)) + theme_bw()
+```
+
+![plot of chunk unnamed-chunk-11](Visualization-figure/unnamed-chunk-11-1.png)
+</font>
+***
+<br>
+<font size = 5>
+
+```r
+ggplot(data = mpg) + geom_point(mapping= aes(x = displ, y = cty, shape = class)) + theme_bw()
+```
+
+![plot of chunk unnamed-chunk-12](Visualization-figure/unnamed-chunk-12-1.png)
+</font> 
+<div class = "footer" style="margin-top 200px;margin-left -300px; font-size:80%;"> Google or read help about aesthetics for ggplot </div>
+
+Scatter Plots contd...
+==============================================================
+<br>
+<font size = 5>
+
+```r
+ggplot(data = mpg) + geom_point(mapping= aes(x = displ, y = cty)) + theme_bw() + facet_wrap(~class)
+```
+
+![plot of chunk unnamed-chunk-13](Visualization-figure/unnamed-chunk-13-1.png)
+</font>
+
+More than one way to skin a cat. Here is a cool way
+==============================================================
+
+```r
+library(plotly)
+```
