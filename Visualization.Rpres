@@ -5,6 +5,13 @@ date: 28th April 2017
 autosize: true
 css:custom.css
 
+Recall material
+========================================================
+<br>
+<br>
+<br>
+<p> https://github.com/srivathsesh/DataScience/tree/presentation </p>
+
 Data Analysis process
 ========================================================
 <!-- ![pyramid](./Visualization-figure/pyramid.png) -->
@@ -37,33 +44,48 @@ Exploratory Data Analysis using R
 - Can be annoying too
   + While documentations have been standardized, it still can be a pain sometimes!
   + <span style = "color:blue">Don't worry, you still be fine </span>
-  
+ 
+Oh! by the way...
+==========================================================
+<br>
+This presentation is made using <span style = "color:Red"> R </span> code 
+<br>
+You'll find some of the portions of the slide are not very well formatted.
+<br>
+Because... I still have my training wheels on
+
+Training wheels: Google, Stackoverflow, GitHub, <span style = "color:Red"> You </span> 
  Packages
 =========================================================
  <br>
- - base
  - ggplot2 (Hadley Wickham & Garrett Grolemund)
  - plotly (Plotly technologies Inc.)
+ - A final surprise
  
  Datasets
- - iris
  - mpg
- - diamonds
+ - mtcars
  
  ***
  
  ![book] (./Visualization-figure/cover.png)
  
-If you are wondering why this presentation looks different?
-==========================================================
+How does the "mpg" data look?
+========================================================
 <br>
-Or why is this poorly formatted...?
+```{r, echo = F}
+library(ggplot2)
+kable(head(mpg))
+```
+<br>
+try the command  "<span style = "color:blue">head(mpg)</span>"
 
-This presentation is made using <span style = "color:Red"> R </span> code 
-
-And... I still have my training wheels on
-
-Training wheels: Google, Stackoverflow, GitHub, <span style = "color:Red"> You </span>
+What are the data types?
+========================================================
+<br>
+```{r, echo=T, height=10, width=20}
+str(mpg)
+```
 
 ggplot2
 =======================================================
@@ -82,22 +104,7 @@ ggplot template
 <i>An <span style = "color:blue">aes</span>thetic is a visual property of the objects in your plot. Aesthetics include things like size,shape or color of your points.</i>
 
  
-How does the "mpg" data look?
-========================================================
-<br>
-```{r, echo = F}
-library(ggplot2)
-kable(head(mpg))
-```
-<br>
-try the command  "<span style = "color:blue">head(mpg)</span>"
 
-What are the data types?
-========================================================
-<br>
-```{r, echo=T, height=10, width=20}
-str(mpg)
-```
 Histograms
 =========================================================
 ```{r,echo=T}
@@ -108,13 +115,12 @@ ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy))
 ```
 Aesthetics
 =========================================================
+<font size = 5>
 ```{r,echo =T,width=10}
 ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy),col="red", fill="red")
 ```
-***
-```{r,echo =T}
-ggplot(data = mpg) + geom_histogram(mapping = aes(x=hwy, col = "red", fill = "red"))
-```
+</font>
+
 Aesthetics contd...
 ==========================================================
 <font size = 5>
@@ -174,6 +180,46 @@ ggplot(data = mpg) + geom_point(mapping= aes(x = displ, y = cty)) + theme_bw() +
 
 More than one way to skin a cat. Here is a cool way
 ==============================================================
+<font size = 5>
 ```{r, echo=T}
 library(plotly)
+scatter <- plot_ly(data = mpg, x = ~displ, y = ~cty, type = "scatter", color = ~class)
+```
+</font>
+<iframe src="https://plot.ly/~srivathsesh/0/cty-vs-displ/" style="position:absolute;height:100%;width:100%"></iframe>
+
+Boxplots
+================================================================
+<font size = 5>
+ ```{r, echo = T,height=10, width=20}
+BP <- ggplot(data = mpg,mapping = aes(x = class, y = cty))+ geom_boxplot() + coord_flip() + theme_bw() 
+BP + geom_hline(yintercept = 30, color = "red", lty = 8)
+```
+</font>
+
+Plotly Boxplot
+===============================================================
+<font size = 5>
+```{r, echo=T}
+library(magrittr)
+PlotlyBox <- plot_ly(data = mpg, y = ~class, x = ~cty, type = "box", boxpoints = "all", color = ~class, orientation = 'h') %>% 
+ add_trace(inherit = F,x = c(30,30), y = c("2seater","suv"), type = "scatter",mode = "lines", line = list(dash = 'dash',color = "red" ), showlegend = F)
+
+```
+<iframe src = "https://plot.ly/~srivathsesh/2.embed" style="position:absolute;height:100%;width:100%"></iframe>
+
+</font>
+
+Plots interactivity
+==================================================================
+```{r}
+library(iplots)
+# ihist(mtcars#mpg)
+# ibar(mtcars$am)
+# iplot(mtcars$mpg, mtcars$wt)
+# ibox(mtcars$mpg,mtcar$cyl)
+# imosaic(mtcars$am, mtcars$cyl)
+# ibar(row.names(mtcars)) ; iplot.rotate(45) ; iplot.size(10,600)
+# iplot.opt(col=unclass(cyl))
+```
 
