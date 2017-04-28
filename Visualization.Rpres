@@ -194,6 +194,7 @@ Boxplots
  ```{r, echo = T,height=10, width=20}
 BP <- ggplot(data = mpg,mapping = aes(x = class, y = cty))+ geom_boxplot() + coord_flip() + theme_bw() 
 BP + geom_hline(yintercept = 30, color = "red", lty = 8)
+# Try ggplotly()
 ```
 </font>
 
@@ -214,7 +215,7 @@ Plots interactivity
 ==================================================================
 ```{r}
 library(iplots)
-# ihist(mtcars#mpg)
+# ihist(mtcars$mpg)
 # ibar(mtcars$am)
 # iplot(mtcars$mpg, mtcars$wt)
 # ibox(mtcars$mpg,mtcar$cyl)
@@ -222,4 +223,16 @@ library(iplots)
 # ibar(row.names(mtcars)) ; iplot.rotate(45) ; iplot.size(10,600)
 # iplot.opt(col=unclass(cyl))
 ```
+
+===================================================================
+<br>
+<br>
+<br>
+<br>
+![book] (./Visualization-figure/Hard Work.gif)
+
+
+But don't forget to have fun! 
+<br>
+Thank you! & Best wishes
 

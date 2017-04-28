@@ -246,6 +246,10 @@ Boxplots
  ```
  
  ![plot of chunk unnamed-chunk-14](Visualization-figure/unnamed-chunk-14-1.png)
+ 
+ ```r
+ # Try ggplotly()
+ ```
 </font>
 
 Plotly Boxplot
@@ -266,7 +270,7 @@ Plots interactivity
 
 ```r
 library(iplots)
-# ihist(mtcars#mpg)
+# ihist(mtcars$mpg)
 # ibar(mtcars$am)
 # iplot(mtcars$mpg, mtcars$wt)
 # ibox(mtcars$mpg,mtcar$cyl)
@@ -274,4 +278,16 @@ library(iplots)
 # ibar(row.names(mtcars)) ; iplot.rotate(45) ; iplot.size(10,600)
 # iplot.opt(col=unclass(cyl))
 ```
+
+===================================================================
+<br>
+<br>
+<br>
+<br>
+![book] (./Visualization-figure/Hard Work.gif)
+
+
+But don't forget to have fun! 
+<br>
+Thank you! & Best wishes
 
